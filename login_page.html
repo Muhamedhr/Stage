@@ -4,26 +4,33 @@
 	<head>
 	<title>Data Request Adapter</title>
 	</head>
-
-
-		<body bgcolor = "red">
-			<img src="images/altrad_logo.JPG" alt = "Altrad">
-			<h1>Data Request Adapter Portal</h1>
-
-			<h3>Log in met je gebruikersnaam en wachtwoord</h3>
-
-			<form>
-			Gebruikersnaam:<br>
-			<input type = "text" name = "firstname"><br>
-			Wachtwoord:<br>
-			<input type = "text" name = "firstname"><br>
-			</form>
-
-			<button type = "button">Submit</button>
-
-
-
+	
+		<body>
+		
+			<div>
+				<table style = "width:100%">
+					<tr style = "width:100%">
+						<th style = "width:33%"><img src = "images/altrad_logo.JPG" alt = "Altrad" style = "width:230px"></th>
+						<th style = "width:34%; font-size: 4em; font-weight: bold">Data Request Adapter Portal</th>
+						<th style = "width:33%"><!-- dit is voor de symmetrie !--></th>
+					</tr>
+				</table>
+			</div>
+			
+			<div align = "center">
+				<h1>Log in met je gebruikersnaam en wachtwoord</h1>
+			</div>
+			
+			<div align = "center">
+				<form action = "login_page.php" method = "post">
+					Gebruikersnaam:<br>
+					<input type = "text" name = "firstname"><br>
+					Wachtwoord:<br>
+					<input type = "text" name = "firstname"><br>
+					<input type = "submit" name = "login" value = "Login">
+				</form>
+			</div>
+			
 		</body>
-
 
 </html>

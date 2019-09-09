@@ -5,29 +5,44 @@
 	<title> Converteer naar gewenst bestandsformaat </title>
 	</head>
 
-	<body bgcolor = "red">
-
-		<h3>Selecteer het gewenste bestandsformaat</h3>
+		<body>
 		
-		<select>
-		<!-- 
-		BESTANDSFORMATEN WAAR JE UIT KAN KIEZEN
-		!-->
-		<option value = "Excel">Excel</option>
-		<option value = "PDF">PDF</option>
-		<option value = "Docx">Word document</option>
-		<option value = "XML">XML</option>
-		</select>
+			<!-- bovenste regel voor de mooiheid !-->
+			<div>
+				<table style = "width:100%">
+					<tr style = "width:100%">
+						<th style = "width:33%"><img src = "images/altrad_logo.JPG" alt = "Altrad" style = "width:230px"></th>
+						<th style = "width:34%; font-size: 4em; font-weight: bold">Data Request Adapter Portal</th>
+						<th style = "width:33%"><!-- dit is voor de symmetrie !--></th>
+					</tr>
+				</table>
+			</div>
 
-		<button type = "button">Submit</button>
-		<button type = "button">Cancel</button>
+			<!-- het select gedeelte !-->
+			<div>
+				<table style = "width:100%">
+					<tr style = "width:100%">
+						<th style = "width:33%">Selecteer het gewenste bestandsformaat</th>
+						<th style = "width:34%"><select>
+													<!-- 
+													BESTANDSFORMATEN WAAR JE UIT KAN KIEZEN
+													!-->
+													<option value = "Excel">Excel</option>
+													<option value = "PDF">PDF</option>
+													<option value = "Docx">Word document</option>
+													<option value = "XML">XML</option>
+												</select></th>
+						<th style = "width:33%"><button type = "button" align = "left">Submit</button></th>
+					</tr>
+				</table>
+			</div>
+			
+			<!-- hier kan de data weer gedisplayed worden, handig voor de gebruiker !-->
+			
+			<div align = "center">
+				<button type = "button">Cancel</button>
+			</div>
 
-
-	</body>
-
-
-
-
-
-
+		</body>
+		
 </html>

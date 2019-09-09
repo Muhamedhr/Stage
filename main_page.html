@@ -5,41 +5,57 @@
 	<title>Data Request Adapter</title>
 	</head>
 
-		<body bgcolor = "red">
-		
-		
-			<h1>Data Request Adapter Portal</h1>
-
-			<p>welkom {gebruiker}</p>
-			<p>Last login: {datum}</p>
-
-			<p>selecteer de gewenste gegevens</p>
-
-			<select>
-			<!-- 
-			Hier hoor je alle mogelijkheden uit de database te halen
-			eerst abstactieniveau 1 (tarief medewerkers) dan wordt abstractienivea 2 opgehaald (welke functie) etc...
-			!-->
-			<option value = "voorbeeld 1">voorbeeld 1</option>
-			<option value = "voorbeeld 1">voorbeeld 1</option>
-			<option value = "voorbeeld 1">voorbeeld 1</option>
-			<option value = "voorbeeld 1">voorbeeld 1</option>
-			<option value = "voorbeeld 1">voorbeeld 1</option>
-			<option value = "voorbeeld 1">voorbeeld 1</option>
-
-			</select>
-
-
-			<button type = "button">submit</button>
-			<button type = "button">Log uit</button>
-			<button type = "button">Converteer naar</button>
+		<body>
+			<div>
+				<!-- de bovenkant van het scherm, de eerste regel !-->
+				<table style = "width:100%">
+					<tr>
+						<th style = "width:33%"><img src = "images/altrad_logo.JPG" style = "width:230px" alt = "Altrad" align = "center"></th>
+						<th align = "center" style="width:33%; font-size: 4em; font-weight: bold">Data Request Adapter Portal</th>
+						<th align = "right" style = "width:20%">welkom {gebruiker}<br>Last login: {datum}</th>
+						<th align = "center" style = "width:14%"><button type = "button" align = "right" style = "width:140px; height:70px">Log uit</button></th>
+					</tr>
+				</table>
+			</div>
 			
+			<!-- om de gewenste opties te selecteren !-->
+			<div>
+				<table style = "width:100%">
+					<tr>
+						<th style = "width:20%; font-size: 1em" align = "right">Selecteer de gewenste gegevens:</th>
+						<th align = "left" style = "width:1000px"><select style = "width:100%">
+								<!-- 
+								Hier hoor je alle mogelijkheden uit de database te halen
+								eerst abstactieniveau 1 (tarief medewerkers) dan wordt abstractienivea 2 opgehaald (welke functie) etc...
+								!-->
+								<option value = "voorbeeld 1">voorbeeld 1</option>
+								<option value = "voorbeeld 1">voorbeeld 1</option>
+								<option value = "voorbeeld 1">voorbeeld 1</option>
+								<option value = "voorbeeld 1">voorbeeld 1</option>
+								<option value = "voorbeeld 1">voorbeeld 1</option>
+								<option value = "voorbeeld 1">voorbeeld 1</option>
+							</select>
+						</th>
+					</tr>
+				</table>
+			</div>
+			
+			
+			<!-- als je wat selecteert dan wordt de query naar de database gestuurd en wordt mogelijk een preview laten zien van de data !-->
+			
+			
+			<!-- mogelijke acties van de gebruiker, de naam zegt al wat de acties kunnen zijn  !-->
+			<div>
+				<table style = "width:100%">
+					<tr>
+						<th style = "width:33%"><button type = "button" align = "center" style = "width:140px; height:70px">Reset Filters</button></th>
+						<th style = "width:34%"><button type = "button" align = "center" style = "width:140px; height:70px">Select</button></th>
+						<th style = "width:33%"><button type = "button" align = "center" style = "width:140px; height:70px">Converteer Naar</button></th>
+					</tr>
+				</table>
+			</div>
 			<!-- als het account type "admin" is, is er een extra button "create query" !-->
-
-
-
-
+			
 		</body>
-
-
+		
 </html>

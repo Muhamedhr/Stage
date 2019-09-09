@@ -2,24 +2,50 @@
 <html>
 
 	<head>
-	<title align = "center"> Create queries </title>
+	<title align = "center"> Admin Section </title>
 	</head>
 	
-	<body bgcolor = "red">
-		<h3 align = "center"> Add Query Interface </h3>
-		<h4 align = "center"> Dit is de interface om querys toe te voegen als dat nodig blijkt te zijn <h4>
-		
-		<!-- hier moet ook controle op komen of de query geen syntax error heeft !-->
-		<form align = "center">
-			Query:<br>
-			<input type = "text" name = "query"><br>
-			Description:<br>
-			<input type = "text" name = "query description"><br>
-		</form>
-		
-		<button type = "button" align = "left">Cancel</button>
-		<button type = "button" align = "center">Add Query</button>
+	<body>
 	
+		<!-- bovenste regel voor de mooiheid !-->
+		<div>
+			<table style = "width:100%">
+				<tr style = "width:100%">
+					<th style = "width:33%"><img src = "images/altrad_logo.JPG" alt = "Altrad" style = "width:230px"></th>
+					<th style = "width:34%; font-size: 4em; font-weight: bold">Data Request Adapter Portal</th>
+					<th style = "width:33%"><!-- dit is voor de symmetrie !--></th>
+				</tr>
+			</table>
+		</div>
+		
+		<div>
+			<table style = "width:100%">
+				<tr style = "width:100%">
+					<th align = "center">Query Interface<br>Dit is de interface om querys toe te voegen, wijzigen, verwijderen en te testen als dat nodig blijkt te zijn</th>
+				</tr>
+				<tr>
+					<td>
+						<!-- hier moet ook controle op komen of de query geen syntax error heeft !-->
+						<form align = "center">
+							Query:<input type = "text" name = "Database query" style = "width:100%"><br>
+							Description:<input type = "text" name = "query description" style = "width:100%"><br>
+						</form>
+					</td>
+				</tr>
+			</table>
+		</div>
+		
+		<div>
+			<table style = "width:100%">
+				<tr style = "width:100%">
+					<th style = "width:20%"><button type = "button" align = "center">Modify Query</button></th>
+					<th style = "width:20%"><button type = "button" align = "center">Delete Query</button></th>
+					<th style = "width:20%"><button type = "button" align = "center">Test Query</button></th>
+					<th style = "width:20%"><button type = "button" align = "center">Add Query</button></th>
+					<th style = "width:20%"><button type = "button" align = "center">Cancel</button></th>
+				</tr>
+			</table>
+		</div>
 	
 	</body>
 
