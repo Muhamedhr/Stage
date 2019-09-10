@@ -20,4 +20,38 @@ $connection = new PDO(
     $pdo_options //Options
 );
 
+//functie om een sql statement uit te voeren voor data opvraag(don't repeat yourself)
+//deze wordt niet gebruikt bij het inloggen, omdat er bij het inloggen een extra parameter meegegeven moet worden
+function execute_sql_extract_data($query)
+{
+	//meest efficiente/geschikte codering uitzoeken
+	$statement = $pdo->prepare($query);
+	try
+	{
+		$statement->execute();
+		$result = $statement->fetch(PDO::FETCH_ASSOC);
+		echo $result;
+	}
+	catch (PDOException $e)
+	{
+		echo "Extracting data failed" . $e->getMessage();
+	}
+}
+
+//modifyen houdt hier in -> inserten, updaten, modifyen en deleten
+//nieuwe functie omdat je bij het modifyen van de DB (inserten, updaten, modifyen en deleten) de exec() functie nodig hebt
+function execute_sql_modify_data($query)
+{
+	$statement = $pdo->prepare($query);
+	try
+	{
+		$statement->exec();
+		$pdo->commit();
+	}
+	catch (PDOException $e)
+	{
+		echo "Inserting data failed" . $e->getMessage();
+	}
+}
+
 ?>
