@@ -1,20 +1,23 @@
 <?php 
-//start een sessie, deze MOET aangeroepen worden op elke pagina
-session_start();
-
 //je hebt de php code nodig om te connecten dit is een soort verplichte #include
 require 'connect_db.php';
+
+//start een sessie, deze MOET aangeroepen worden op elke pagina
+secure_session_start();
 
 //pak de waarden van de login velden
 //de lijn is op te vatten als -> if username !empty then trim(ussername) else null;
 $unameAtt = !empty($_POST['username']) ? trim($_POST['username']) : null;
 $passwdAtt = !empty($_POST['passwd']) ? trim($_POST['passwd']) : null;
-$hash = "sha512";
+
+//hash die gebruikt wordt
+$hash = "sha256";
 
 //functie om the checken of de login valid is
 function isValidLogin($username, $passwd)
 {	
 	//de sql query om de velden the checken
+	/*
 	$query = "select user_id, username, passwd from users where username = :username"
 	$statement = $pdo->prepare($query);
 	$query->bindValue(':username', $username);
@@ -22,14 +25,18 @@ function isValidLogin($username, $passwd)
 	//execute en fetch
 	$statement->execute();
 	$result = $statement->fetch(PDO::FETCH_ASSOC);
+	*/
+	
+	$uname = "";
+	$passwd = "";
 	
 	//checken of de user uberhaupt bestaat
 	if($result === false)
 	{
-		//deze message krijgt de user wel te zien, maar de user bestaat eigenlijk nog niet in de DB
-		$log_attempt_query = "insert into User_action_logs (object_id, employee_number, action_id) values (max(object_id) + 1, {employee number}, {action_id}";
-		execute_sql_modify_data($log_attempt_query);
+		//$log_attempt_query = "insert into User_action_logs (object_id, employee_number, action_id) values (max(object_id) + 1, {employee number}, {action_id}";
+		//execute_sql_modify_data($log_attempt_query);
 		
+		//deze message krijgt de user wel te zien, maar de user bestaat eigenlijk nog niet in de DB
 		die('incorrecte gebruikersnaam / wachtwoord combinatie');
 	}
 	
@@ -37,12 +44,14 @@ function isValidLogin($username, $passwd)
 	{
 		//de user bestaat, check nu of het wachtwoord klopt
 		//vergelijk de wachtwoorden met elkaar, "$user['passwd']" is het gehashte wachtwoord in de database
-		$validPasswd = password_verify(hash("sha512", $passwd), $user['passwd']);
+		//dit moet wel van het type boolean zijn dan
+		//$validPasswd = password_verify(hash($hash, $passwd), $user['passwd']);
+		$validPasswd = password_verify($passwd, $user['passwd']);
 		
 		//als het wachtwoord geldig is
 		if($validPasswd)
-		{
-			//maak een sessie id voor de gebruiker
+		{			
+			//maak een sessie id voor de gebruiker, sessie aan de hand van timestamps, security
 			$_session['user_id'] = $user['id'];
 			$_session['logged_in'] = time();
 		}
@@ -50,8 +59,8 @@ function isValidLogin($username, $passwd)
 		else
 		{
 			//de variabele naam mag hier hetzelfde zijn, omdat het programma nooit in beide kan komen
-			$log_attempt_query = "insert into User_action_logs (object_id, employee_number, action_id) values (max(object_id) + 1, {employee number}, {action_id}";
-			execute_sql_modify_data($log_attempt_query);
+			//$log_attempt_query = "insert into User_action_logs (object_id, employee_number, action_id) values (max(object_id) + 1, {employee number}, {action_id}";
+			//execute_sql_modify_data($log_attempt_query);
 			
 			die('incorrecte gebruikersnaam / wachtwoord combinatie');
 		}
@@ -64,6 +73,12 @@ if(isset($_POST['login']))
 	//check of de login valid is
 	if(isValidLogin($unameAtt, $passwdAtt))
 	{
+		//log dit ook maar in de DB
+		$log_attempt_query = "insert into User_action_logs (object_id, employee_number, action_id) values (max(object_id) + 1, {employee number}, {action_id}";
+		execute_sql_modify_data($log_attempt_query);
+		
+		current_session_secure_regenerate_id();
+		
 		echo "login gelukt";
 		
 		//redirect naar de main_page.html
@@ -73,8 +88,10 @@ if(isset($_POST['login']))
 	
 	else
 	{
+		current_session_secure_regenerate_id();
 		echo "login failed";
 	}
 }
+
 
 ?>

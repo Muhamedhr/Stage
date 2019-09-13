@@ -1,7 +1,5 @@
 <?php
-
-//de PHP code voor de DB connectie
-//dingen toevoegen die guido ook had, voor extra beveiliging
+//de PHP code voor de DB connectie, met wat handige functies
 
 //variabelen
 $HOST = "htv000874";
@@ -13,12 +11,49 @@ $DBNAME = "hesb";
 $pdo_options = array(PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION, PDO::ATTR_EMULATE_PREPARES => false);
 
 //met deze kan je nu met de database connecten
-$connection = new PDO(
-    "mysql:host=" . HOST . ";dbname=" . DBNAME, //DSN
-    USER, //Username
-    PASSWD, //Password
-    $pdo_options //Options
-);
+$connection = new PDO("mysql:host=" . HOST . ";dbname=" . DBNAME, USER, PASSWD, $pdo_options);
+
+//secure versie van sessio_start()
+function secure_session_start()
+{
+	//enable strict session mode, security improvement
+	ini_set('session.use_strict_mode', 1);
+	session_start();
+	
+	//je mag een niet te oude session ID hebben
+	if(!empty($_SESSION['deleted_time']) && $_SESSION['deleted_time'] < time() - 180)
+	{
+		session_destroy();
+		ini_set('session.use_strict_mode', 1);
+		session_start();
+	}
+}
+
+// Session ID must be regenerated when:
+//  - User logged in
+//  - User logged out
+//  - Certain period has passed
+function current_session_secure_regenerate_id()
+{
+	if(session_status() != PHP_SESSION_ACTIVE)
+	{
+		secure_session_start();
+	}
+	
+	//zo niet, dan...
+	$new_session_id = session_create_id('weet ik veel');
+	// Set deleted timestamp. Session data must not be deleted immediately for reasons.
+    $_SESSION['deleted_time'] = time();
+    // Finish session
+    session_commit();
+	// Make sure to accept user defined session ID
+    // NOTE: You must enable use_strict_mode for normal operations.
+	ini_set('session.use_strict_mode', 0);
+    // Set new custom session ID
+    session_id($newid);
+    // Start with custom session ID
+    session_start();
+}
 
 //functie om een sql statement uit te voeren voor data opvraag(don't repeat yourself)
 //deze wordt niet gebruikt bij het inloggen, omdat er bij het inloggen een extra parameter meegegeven moet worden
@@ -57,7 +92,7 @@ function execute_sql_modify_data($query)
 }
 
 //de data displayen in een tabel aan de gebruiker
-//algemene versie, je hoeft hier niet alle colommen weer te geven
+//algemene versie, je hoeft hier niet alle colommen als parameter mee te geven
 function execute_sql_extract_and_display_data($query)
 {
 	$data = execute_sql_extract_data($query);

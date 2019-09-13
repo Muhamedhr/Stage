@@ -1,9 +1,9 @@
 <?php
-//start de sessie
-session_start();
-
 //je hebt de php code nodig om te connecten dit is een soort verplichte #include
 require 'connect_db.php';
+
+//start de sessie
+secure_session_start();
  
 //check of de gebruiker ingelogd is, zo niet ga terug naar de login page (security)
 if(!isset($_SESSION['user_id']) || !isset($_SESSION['logged_in']))
@@ -73,7 +73,11 @@ function log_out()
 	$log_log_out_query = "insert into User_action_logs (object_id, employee_number, action_id) values (max(object_id) + 1, {employee number}, {action_id}";
 	execute_sql_modify_data($log_log_out_query);
 	
-	session_destroy();
+	current_session_secure_regenerate_id();
+	
+	//redirect naar de login pagina
+	header('Location: login_page.html');
+	exit();
 }
 
 function reset_filters()
