@@ -1,0 +1,40 @@
+<?php
+	include ('includes/login_page.php');
+?>
+
+<!DOCTYPE html>
+<html>
+
+	<head>
+	<title>Data Request Adapter</title>
+	</head>
+	
+		<body>
+		
+			<div>
+				<table style = "width:100%">
+					<tr style = "width:100%">
+						<th style = "width:33%"><!-- <img src = "/images/altrad_logo.jpg" alt = "Altrad" !--> style = "width:230px"></th>
+						<th style = "width:34%; font-size: 4em; font-weight: bold">Data Request Adapter Portal</th>
+						<th style = "width:33%"><!-- dit is voor de symmetrie !--></th>
+					</tr>
+				</table>
+			</div>
+			
+			<div align = "center">
+				<h1>Log in met je gebruikersnaam en wachtwoord</h1>
+			</div>
+			
+			<div align = "center">
+				<form id = "login" action = "/includes/login_page.php" method = "post">
+					Gebruikersnaam:<br>
+					<input type = "text" name = "username"><br>
+					Wachtwoord:<br>
+					<input type = "text" name = "passwd"><br>
+					<input type = "submit" name = "login" value = "Login">
+				</form>
+			</div>
+			
+		</body>
+
+</html>
