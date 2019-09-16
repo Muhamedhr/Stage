@@ -1,6 +1,6 @@
 <?php 
 //je hebt de php code nodig om te connecten dit is een soort verplichte #include
-require 'connect_db.php';
+//require_once 'connect_db.php';
 
 //start een sessie, deze MOET aangeroepen worden op elke pagina
 secure_session_start();
@@ -68,8 +68,11 @@ function isValidLogin($username, $passwd)
 }
 
 //als het inloggen geprobeerd wordt
+function checkLogin()
+{
 if(isset($_POST['login']))
 {
+/*
 	//check of de login valid is
 	if(isValidLogin($unameAtt, $passwdAtt))
 	{
@@ -91,7 +94,11 @@ if(isset($_POST['login']))
 		current_session_secure_regenerate_id();
 		echo "login failed";
 	}
-}
 
+*/
+echo "hallo test";
+//header('Location: 192.168.6.178/main_page.html');
+}
+}
 
 ?>
