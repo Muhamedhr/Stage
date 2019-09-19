@@ -1,17 +1,17 @@
 <?php 
 //je hebt de php code nodig om te connecten dit is een soort verplichte #include
 //require_once 'connect_db.php';
-
+/*
 //start een sessie, deze MOET aangeroepen worden op elke pagina
-secure_session_start();
+//secure_session_start();
 
 //pak de waarden van de login velden
 //de lijn is op te vatten als -> if username !empty then trim(ussername) else null;
-$unameAtt = !empty($_POST['username']) ? trim($_POST['username']) : null;
-$passwdAtt = !empty($_POST['passwd']) ? trim($_POST['passwd']) : null;
+//$unameAtt = !empty($_POST['username']) ? trim($_POST['username']) : null;
+//$passwdAtt = !empty($_POST['passwd']) ? trim($_POST['passwd']) : null;
 
 //hash die gebruikt wordt
-$hash = "sha256";
+//$hash = "sha256";
 
 //functie om the checken of de login valid is
 function isValidLogin($username, $passwd)
@@ -66,10 +66,9 @@ function isValidLogin($username, $passwd)
 		}
 	}
 }
+*/
 
 //als het inloggen geprobeerd wordt
-function checkLogin()
-{
 if(isset($_POST['login']))
 {
 /*
@@ -97,8 +96,7 @@ if(isset($_POST['login']))
 
 */
 echo "hallo test";
-//header('Location: 192.168.6.178/main_page.html');
-}
+header('Location: main_page.html');
 }
 
 ?>
